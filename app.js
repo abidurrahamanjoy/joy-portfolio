@@ -7,17 +7,24 @@ import { cloudinaryConfig } from "./cloudinary-config.js";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app), db = getFirestore(app);
 
+// The only Firebase Authentication UID allowed to use the editor.
 const ADMIN_UID = "X8IuyH0h6nSUqn7066tGQKodEWV2";
 const defaultData = {
- profile:{name:"Abidur Rahman Joy",tagline:"D. Agriculturist | Batch Designer | Digital Creator",about:"I combine agriculture, digital marketing, and graphic design to build practical projects and useful digital experiences.",profileImage:"assets/profile-placeholder.svg"},
- projects:[],
- skills:["Agriculture","Digital Marketing","Graphic Design","AI Content Creation","Web/App Projects"],
+ profile:{name:"Joy",tagline:"D. Agriculturist | Entrepreneur | Digital Creator",about:"I combine agriculture, entrepreneurship, digital skills and AI-powered content creation to build practical projects and useful digital experiences.",profileImage:"assets/profile-placeholder.svg"},
+ projects:[
+  {title:"Amader Baniachong",category:"App",description:"A mobile-first community platform concept for local news, services, education, marketplace and opportunities.",image:"assets/project-placeholder.svg",url:"#"},
+  {title:"Joy Agro",category:"Agriculture",description:"Agriculture and nursery-focused digital business concept connecting products, stock and customers.",image:"assets/project-placeholder.svg",url:"#"},
+  {title:"Baniachong Tuition Seba",category:"Education",description:"A local tutor and parent service concept designed around trusted home tutoring.",image:"assets/project-placeholder.svg",url:"#"}
+ ],
+ skills:["Agriculture","Entrepreneurship","AI Content Creation","Prompt Engineering","Digital Marketing","Graphic Design","Web/App Projects","Canva","ChatGPT","Gemini","Microsoft Copilot"],
  timeline:[
-  {type:"Education",title:"BAgEd — Bangladesh Open University",period:"Current · 4th semester",description:"Bachelor in Agricultural Education."},
+  {type:"Experience",title:"Owner — Joy Pigeon Farm",period:"Since 2020",description:"Practical experience in pigeon rearing and small-scale livestock management."},
+  {type:"Experience",title:"Manager — Md. Saddik Plant Nursery",period:"Feb 2022 – Aug 2023",description:"Nursery management and practical agricultural work."},
+  {type:"Education",title:"BAgEd — Bangladesh Open University",period:"Current · 5th semester",description:"Bachelor in Agricultural Education."},
   {type:"Education",title:"Diploma in Agriculture",period:"CGPA 3.77 / 4.00",description:"Agriculture Training Institute, Araihazer, Narayanganj."}
  ],
  certificates:[],
- contact:{text:"For collaborations and professional opportunities, feel free to get in touch.",email:"",phone:"",facebook:"",linkedin:"",github:""}
+ contact:{text:"For collaborations, projects and professional opportunities, feel free to get in touch.",email:"",phone:"",facebook:"",linkedin:"",github:""}
 };
 
 let data = structuredClone(defaultData);
@@ -66,7 +73,9 @@ $("#loginBtn").onclick=async()=>{
     }
     $("#loginMsg").textContent="";
   }catch(e){
-    $("#loginMsg").textContent = e.message === "UNAUTHORIZED_ADMIN" ? "This account is not authorized." : "Login failed.";
+    $("#loginMsg").textContent = e.message === "UNAUTHORIZED_ADMIN"
+      ? "This account is not authorized as the site administrator."
+      : "Login failed. Check email/password and Firebase setup.";
   }
 };
 $("#logoutBtn").onclick=()=>signOut(auth);
@@ -77,10 +86,10 @@ function buildEditor(){
  <label>Name<input id="eName"></label><label>Tagline<input id="eTagline"></label><label>About<textarea id="eAbout" rows="4"></textarea></label>
  <label>Profile photo<input id="profileFile" type="file" accept="image/*"></label><img id="profilePreview" class="upload-preview"></div>
  <div class="editor-section"><h3>Projects</h3><div id="projectEdit"></div><button class="small-btn" id="addProject">+ Add project</button></div>
- <div class="editor-section"><h3>Skills</h3><textarea id="eSkills" rows="4"></textarea></div>
+ <div class="editor-section"><h3>Skills</h3><textarea id="eSkills" rows="4" placeholder="One skill per line"></textarea></div>
  <div class="editor-section"><h3>Experience & Education</h3><div id="timelineEdit"></div><button class="small-btn" id="addTimeline">+ Add item</button></div>
  <div class="editor-section"><h3>Certificates</h3><div id="certEdit"></div><button class="small-btn" id="addCert">+ Add certificate</button></div>
- <div class="editor-section"><h3>Contact</h3><div class="row"><input id="eEmail" placeholder="Email"><input id="ePhone" placeholder="Phone"><input id="eFacebook" placeholder="Facebook URL"><input id="eLinkedin" placeholder="LinkedIn URL"><input id="eGithub" placeholder="GitHub URL"></div><textarea id="eContactText"></textarea></div>
+ <div class="editor-section"><h3>Contact</h3><div class="row"><input id="eEmail" placeholder="Email"><input id="ePhone" placeholder="Phone"><input id="eFacebook" placeholder="Facebook URL"><input id="eLinkedin" placeholder="LinkedIn URL"><input id="eGithub" placeholder="GitHub URL"></div><textarea id="eContactText" placeholder="Contact text"></textarea></div>
  <div class="save"><button class="btn primary full" id="saveAll">💾 Save all changes</button><p id="saveMsg" class="msg"></p></div>`;
  fillEditor(); bindEditor();
 }
@@ -116,16 +125,21 @@ async function saveAll(){
   for(const input of document.querySelectorAll("[data-cert-file]")){const f=input.files[0];if(f){const i=+input.dataset.certFile;data.certificates[i].image=await uploadFile(f,"certificate-"+i)}}
   await setDoc(doc(db,"site","portfolio"),data);
   msg.textContent="Saved successfully.";msg.className="msg success";render();
- }catch(e){console.error(e);msg.textContent="Save failed. Check rules and setup."}
+ }catch(e){console.error(e);msg.textContent="Save failed. Check Firebase Firestore/Storage rules and setup."}
 }
 async function uploadFile(file,prefix){
-  if(!cloudinaryConfig.cloudName || !cloudinaryConfig.uploadPreset) throw new Error("Cloudinary missing");
+  if(!cloudinaryConfig.cloudName || cloudinaryConfig.cloudName==="YOUR_CLOUD_NAME" ||
+     !cloudinaryConfig.uploadPreset || cloudinaryConfig.uploadPreset==="YOUR_UNSIGNED_UPLOAD_PRESET"){
+    throw new Error("Cloudinary configuration is missing");
+  }
+  if(!file.type.startsWith("image/")) throw new Error("Only images are allowed");
+  if(file.size > 8 * 1024 * 1024) throw new Error("Image is larger than 8 MB");
   const form=new FormData();
   form.append("file",file);
   form.append("upload_preset",cloudinaryConfig.uploadPreset);
   form.append("tags",`portfolio,${prefix}`);
   const res=await fetch(`https://api.cloudinary.com/v1_1/${encodeURIComponent(cloudinaryConfig.cloudName)}/image/upload`,{method:"POST",body:form});
-  if(!res.ok) throw new Error("Upload failed");
+  if(!res.ok) throw new Error("Cloudinary upload failed");
   const out=await res.json();
   return out.secure_url;
 }
