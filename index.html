@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=5">
 
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -63,18 +63,20 @@
 
     <div id="dashboardView" class="hidden">
       <div class="dash-head">
-        <div><p class="eyebrow">Dashboard</p><h2>Edit portfolio</h2></div>
-        <div class="btnrow"><button id="backupBtn" class="btn">⬇ Backup</button><button id="logoutBtn" class="btn">Logout</button></div>
+        <div><p class="eyebrow">Admin dashboard</p><h2>সাইট এডিট করুন</h2></div>
+        <div class="btnrow"><button id="viewBtn" class="btn">👁 সাইট দেখুন</button><button id="logoutBtn" class="btn">Logout</button></div>
       </div>
       <div id="editor"></div>
       <div class="save">
-        <button class="btn primary full" id="saveAll">💾 Save all changes</button>
+        <span id="dirtyBadge" class="badge">✓ সব সেভ আছে</span>
+        <button class="btn" id="discardBtn">↺ বাতিল</button>
+        <button class="btn primary" id="saveAll">💾 Save all changes</button>
         <p id="saveMsg" class="msg"></p>
       </div>
     </div>
   </div>
 </div>
 
-<script type="module" src="app.js"></script>
+<script type="module" src="app.js?v=5"></script>
 </body>
 </html>
