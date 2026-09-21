@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <title>Joy — Portfolio</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#home">Joy<span>.</span></a>
+  <button id="menuBtn" class="icon-btn">☰</button>
+  <nav id="navLinks">
+    <a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a>
+    <a href="#experience">Experience</a><a href="#certificates">Certificates</a><a href="#contact">Contact</a>
+    <button id="adminBtn" class="admin-btn">🔐 Admin</button>
+  </nav>
+</header>
+
+<main>
+<section id="home" class="hero section">
+  <div class="hero-text">
+    <p class="eyebrow">D. Agriculturist • Entrepreneur • Digital Creator</p>
+    <h1 id="heroName">Loading...</h1>
+    <p id="heroTagline"></p>
+    <div class="actions"><a class="btn primary" href="#projects">View my work</a><a class="btn" href="#contact">Contact</a></div>
+  </div>
+  <div class="hero-photo"><img id="profileImage" src="assets/profile-placeholder.svg" alt="Profile"></div>
+</section>
+
+<section id="about" class="section"><div class="section-head"><p class="eyebrow">About</p><h2>Who I am</h2></div><p id="aboutText" class="lead"></p></section>
+
+<section id="projects" class="section"><div class="section-head"><p class="eyebrow">Selected work</p><h2>Projects</h2></div><div id="projectFilters" class="filters"></div><div id="projectsGrid" class="grid"></div></section>
+
+<section id="skills" class="section"><div class="section-head"><p class="eyebrow">Capabilities</p><h2>Skills</h2></div><div id="skillsGrid" class="skill-grid"></div></section>
+
+<section id="experience" class="section"><div class="section-head"><p class="eyebrow">Journey</p><h2>Experience & Education</h2></div><div id="timeline" class="timeline"></div></section>
+
+<section id="certificates" class="section"><div class="section-head"><p class="eyebrow">Credentials</p><h2>Certificates</h2></div><div id="certGrid" class="grid"></div></section>
+
+<section id="contact" class="section contact"><div><p class="eyebrow">Contact</p><h2>Let's connect.</h2><p id="contactText" class="lead"></p></div><div id="contactLinks" class="contact-links"></div></section>
+</main>
+
+<footer><span id="footerName">Joy</span> · Built with care · <span id="year"></span></footer>
+
+<div id="adminModal" class="modal hidden">
+  <div class="modal-card">
+    <button class="close" data-close>×</button>
+    <div id="loginView">
+      <p class="eyebrow">Private area</p><h2>Admin login</h2>
+      <p class="muted">Only your Firebase account can edit this portfolio.</p>
+      <input id="email" type="email" placeholder="Email">
+      <input id="password" type="password" placeholder="Password">
+      <button id="loginBtn" class="btn primary full">Login</button><p id="loginMsg" class="msg"></p>
+    </div>
+    <div id="dashboardView" class="hidden">
+      <div class="dash-head"><div><p class="eyebrow">Dashboard</p><h2>Edit portfolio</h2></div><button id="logoutBtn" class="btn">Logout</button></div>
+      <div id="editor"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
