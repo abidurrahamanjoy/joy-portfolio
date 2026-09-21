@@ -1,5 +1,3 @@
-// Firebase Web App configuration.
-// Safe for frontend use. Never put a Firebase service-account private key here.
 export const firebaseConfig = {
   apiKey: "AIzaSyCtlxe6quzcuEHFgAWOVgDiA0T_0BH0k0Q",
   authDomain: "joy-portfolio-31131.firebaseapp.com",
