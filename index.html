@@ -11,7 +11,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@700&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=6">
 
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -32,14 +35,20 @@
 </header>
 
 <main>
-  <section id="home" class="hero section">
-    <div class="hero-text">
-      <p class="eyebrow" id="heroEyebrow"></p>
-      <h1 id="heroName">Loading...</h1>
-      <p id="heroTagline"></p>
-      <div class="actions"><a class="btn primary" id="btn1" href="#projects"></a><a class="btn" id="btn2" href="#contact"></a></div>
+  <section id="home" class="hero">
+    <div class="blob b1" aria-hidden="true"></div>
+    <div class="blob b2" aria-hidden="true"></div>
+    <div class="blob b3" aria-hidden="true"></div>
+    <div class="hero-grid">
+      <div class="hero-photo"><img id="profileImage" src="assets/profile-placeholder.svg" alt="Profile"></div>
+      <div class="hero-text">
+        <p class="eyebrow" id="heroEyebrow"></p>
+        <span class="greet"><svg class="brush" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true"><path d="M8 55 C40 20,120 15,150 35 C190 60,230 15,290 45 C260 75,150 85,90 70 C50 60,20 68,8 55 Z" fill="currentColor"/></svg><span class="script">Hello!</span></span>
+        <h1 id="heroName">Loading...</h1>
+        <p id="heroTagline"></p>
+        <div class="actions"><a class="btn primary" id="btn1" href="#projects"></a><a class="btn" id="btn2" href="#contact"></a></div>
+      </div>
     </div>
-    <div class="hero-photo"><img id="profileImage" src="assets/profile-placeholder.svg" alt="Profile"></div>
   </section>
 
   <!-- All other sections are generated from the database -->
@@ -77,6 +86,6 @@
   </div>
 </div>
 
-<script type="module" src="app.js?v=5"></script>
+<script type="module" src="app.js?v=6"></script>
 </body>
 </html>
