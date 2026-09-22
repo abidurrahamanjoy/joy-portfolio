@@ -91,6 +91,7 @@ function defaultData() {
       eyebrow: "D. Agriculturist • Batch Designer • Digital Creator",
       tagline: "D. Agriculturist | Batch Designer | Digital Creator",
       image: "assets/profile-placeholder.svg",
+      photoScale: 1,
       btn1Text: "View my work", btn1Link: "#projects",
       btn2Text: "Contact", btn2Link: "#contact"
     },
@@ -212,12 +213,18 @@ function applyAccent() {
   if (m) m.content = c;
 }
 
+function applyPhotoScale() {
+  const n = Number(data.profile.photoScale);
+  document.documentElement.style.setProperty("--photo-scale", (n > 0 ? n : 1));
+}
+
 function render() {
   const p = data.profile, st = data.settings;
   document.title = st.pageTitle || `${p.name} — Portfolio`;
   const md = document.querySelector('meta[name="description"]');
   if (md && st.metaDesc) md.content = st.metaDesc;
   applyAccent();
+  applyPhotoScale();
 
   $("#brand").innerHTML = `${esc(st.brand)}<span>.</span>`;
   $("#heroEyebrow").textContent = p.eyebrow || "";
@@ -345,6 +352,15 @@ const imgFld = (path, label) => {
   return `<div class="imgfld dropzone"><span>${label}</span><div class="imgrow">${v ? `<img class="upload-preview" src="${esc(opt(v, 300))}" alt="">` : `<div class="upload-preview empty">🖼️</div>`}<div><div class="btnrow"><label class="small-btn add filebtn">📷 ${v ? "ছবি বদলান" : "ছবি বেছে নিন"}<input type="file" accept="image/*" hidden data-upload="${path}"></label>${v ? `<button type="button" class="small-btn danger" data-act="clear-img" data-path="${path}">✕ সরান</button>` : ""}</div><p class="muted small">অথবা ছবি এখানে টেনে এনে ছেড়ে দিন</p></div></div></div>`;
 };
 
+// Simple range slider field, shown as a live percentage next to the label.
+const rangeFld = (path, label, o = {}) => {
+  const v = Number(getPath(path));
+  const val = v > 0 ? v : (o.def ?? 1);
+  const min = o.min ?? 0.6, max = o.max ?? 1.6, step = o.step ?? 0.05;
+  const labelId = "lbl-" + path.replace(/\./g, "-");
+  return `<label class="fld">${label} (<span id="${labelId}">${Math.round(val * 100)}%</span>)<input type="range" data-path="${path}" data-label-id="${labelId}" min="${min}" max="${max}" step="${step}" value="${val}"></label>`;
+};
+
 const itemActions = (i, j) => `<div class="btnrow item-actions"><button type="button" class="small-btn" data-act="item-up" data-s="${i}" data-i="${j}">↑</button><button type="button" class="small-btn" data-act="item-down" data-s="${i}" data-i="${j}">↓</button><button type="button" class="small-btn" data-act="item-dup" data-s="${i}" data-i="${j}">⎘ কপি</button><button type="button" class="small-btn danger" data-act="item-del" data-s="${i}" data-i="${j}">🗑 মুছুন</button></div>`;
 
 const itemBox = (s, i, j, thumb, label, inner) => {
@@ -356,7 +372,7 @@ const itemBox = (s, i, j, thumb, label, inner) => {
 function homeTab() {
   const anchors = `<datalist id="anchors">${data.sections.map(s => `<option value="#${esc(s.id)}">${esc(s.title)}</option>`).join("")}</datalist>`;
   return anchors +
-    card("প্রোফাইল ছবি", imgFld("profile.image", "আপনার ছবি")) +
+    card("প্রোফাইল ছবি", imgFld("profile.image", "আপনার ছবি") + rangeFld("profile.photoScale", "ছবির সাইজ", { min: 0.6, max: 1.6, step: 0.05, def: 1 }), "স্লাইডার টেনে ছবি ছোট বা বড় করুন — পিসি ও মোবাইল দুই জায়গাতেই প্রয়োগ হবে। Save করে 👁 সাইট দেখুন চাপলে ফলাফল দেখতে পাবেন।") +
     card("নাম ও পরিচিতি", row(fld("profile.name", "নাম"), fld("profile.eyebrow", "নামের উপরের ছোট লেখা")) + fld("profile.tagline", "ট্যাগলাইন / সংক্ষিপ্ত পরিচয়")) +
     card("হিরো বাটন", row(fld("profile.btn1Text", "বাটন ১ — লেখা"), fld("profile.btn1Link", "বাটন ১ — লিংক", { list: "anchors", ph: "#projects" })) + row(fld("profile.btn2Text", "বাটন ২ — লেখা"), fld("profile.btn2Link", "বাটন ২ — লিংক", { list: "anchors", ph: "#contact" })), "লেখা ফাঁকা রাখলে বাটন দেখাবে না। লিংক ঘরে ক্লিক করলে সেকশনের তালিকা পাবেন।");
 }
@@ -463,11 +479,18 @@ function buildEditor() {
 $("#editor").addEventListener("input", e => {
   const el = e.target;
   if (!el.dataset.path) return;
-  let v = el.type === "checkbox" ? el.checked : el.value;
+  let v = el.type === "checkbox" ? el.checked : el.type === "range" ? parseFloat(el.value) : el.value;
   if (el.dataset.lines) v = v.split("\n").map(x => x.trim());
   setPath(el.dataset.path, v);
   setDirty(true);
   if (el.dataset.path === "settings.accent") applyAccent();
+  if (el.dataset.path === "profile.photoScale") {
+    applyPhotoScale();
+    if (el.dataset.labelId) {
+      const lbl = document.getElementById(el.dataset.labelId);
+      if (lbl) lbl.textContent = Math.round((v || 1) * 100) + "%";
+    }
+  }
   const m = el.dataset.path.match(/^sections\.(\d+)\.title$/);
   if (m) { const t = document.querySelector(`.secitem[data-s="${m[1]}"] .t`); if (t) t.textContent = v || "(শিরোনামহীন)"; }
 });
