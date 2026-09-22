@@ -26,7 +26,7 @@ body{margin:0;font-family:var(--body);color:var(--ink);background:var(--bg);line
 h1,h2,h3{font-family:var(--disp);line-height:1.12;margin:0;font-weight:800}
 p{margin:0}
 a{color:inherit;text-decoration:none}
-img{max-width:100%}
+img{max-width:100%;height:auto}
 [hidden]{display:none!important}
 :focus-visible{outline:2px solid var(--green);outline-offset:3px}
 .muted{color:var(--muted)}
@@ -58,10 +58,10 @@ img{max-width:100%}
 .blob.b1{width:8rem;height:8rem;left:2%;top:42%;opacity:.5}
 .blob.b2{width:15rem;height:15rem;left:-5rem;bottom:-5rem;opacity:.65}
 .blob.b3{width:17rem;height:17rem;right:-6rem;bottom:-7rem;opacity:.65}
-.hero-grid{position:relative;z-index:1;width:min(var(--wrap),calc(100% - 2.5rem));margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr;align-items:end;gap:clamp(1.5rem,4vw,3rem);min-height:min(50vh,28rem);padding-top:1rem}
-.hero-photo{align-self:end;justify-self:center;width:100%;max-width:25rem;aspect-ratio:4/5;border-radius:2.5rem 2.5rem 0 0;overflow:hidden;background:var(--bg);display:flex;align-items:flex-end;justify-content:center}
+.hero-grid{position:relative;z-index:1;width:min(var(--wrap),calc(100% - 2.5rem));margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr;align-items:center;gap:clamp(1.5rem,4vw,3rem);min-height:min(46vh,25rem);padding:clamp(2rem,6vw,3.5rem) 0}
+.hero-photo{align-self:center;justify-self:center;width:100%;max-width:25rem;aspect-ratio:4/5;border-radius:2.5rem 2.5rem 0 0;overflow:hidden;background:var(--bg);display:flex;align-items:flex-end;justify-content:center}
 .hero-photo img{width:100%;height:100%;object-fit:contain;object-position:bottom center;display:block}
-.hero-text{align-self:end;padding-bottom:clamp(2rem,6vw,3.5rem)}
+.hero-text{align-self:center}
 .hero-text .eyebrow{color:var(--green-deep);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;margin:0 0 .6rem}
 .greet{position:relative;display:inline-block;margin:0 0 .3rem}
 .brush{position:absolute;left:-8%;top:32%;width:118%;height:65%;color:var(--gold);opacity:.65;z-index:-1}
@@ -230,9 +230,8 @@ footer{text-align:center;padding:2.25rem 1rem;color:var(--muted);font-size:.9rem
   .nav nav a::after{display:none}
   .admin-btn{margin-top:.3rem;text-align:center}
 
-  .hero-grid{grid-template-columns:1fr;text-align:center;min-height:0;padding-top:1.5rem;padding-bottom:1rem}
+  .hero-grid{grid-template-columns:1fr;text-align:center;min-height:0;padding:1.5rem 0 1rem}
   .hero-photo{order:-1;justify-self:center;aspect-ratio:4/5;height:auto;max-width:14rem;border-radius:2rem;margin:0 auto 1.5rem}
-  .hero-text{padding-bottom:2rem}
   .greet{margin-inline:auto}
   .hero p:not(.eyebrow){margin-left:auto;margin-right:auto}
   .actions{justify-content:center}
