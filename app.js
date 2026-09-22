@@ -94,7 +94,7 @@ function defaultData() {
       btn1Text: "View my work", btn1Link: "#projects",
       btn2Text: "Contact", btn2Link: "#contact"
     },
-    settings: { brand: "Joy", footer: "Built with care", pageTitle: "", metaDesc: "", accent: "#1f6b45", hideAdmin: false },
+    settings: { brand: "Joy", footer: "Built with care", pageTitle: "Abidur Rahman Joy | Facebook Ads Specialist, Software & Website Builder, Agriculturist", metaDesc: "Abidur Rahman Joy — Facebook Ads specialist, software & website builder, and agriculturist from Bangladesh. See projects, services, and get in touch.", accent: "#1f6b45", hideAdmin: false },
     sections: [
       S("text", "about", { title: "Who I am", eyebrow: "About", body: "I combine agriculture, digital marketing, and graphic design to build practical projects and useful digital experiences." }),
       S("cards", "projects", { title: "Projects", eyebrow: "Selected work", showFilter: true }),
