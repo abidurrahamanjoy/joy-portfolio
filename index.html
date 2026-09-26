@@ -8,43 +8,46 @@
 
   <link rel="canonical" href="https://abidurrahamanjoy.github.io/joy-portfolio/">
 
-  <title>Abidur Rahman Joy | Facebook Ads Specialist, Software &amp; Website Builder, Agriculturist</title>
-  <meta name="description" content="Abidur Rahman Joy — Facebook Ads specialist, software & website builder, and agriculturist from Bangladesh. See projects, services, and get in touch.">
-  <meta name="keywords" content="Abidur Rahman Joy, Facebook Ads Specialist, Website Builder, Software Builder, Web Developer, Agriculturist, Batch Designer, Digital Marketing, Graphic Design, Habiganj, Sylhet, Bangladesh">
+  <title>Abidur Rahman Joy (Joy) | Web, Software &amp; Facebook Ads — Baniachong, Habiganj, Sylhet, Bangladesh</title>
+  <meta name="description" content="Abidur Rahman Joy (Joy) — website, software, e-commerce &amp; shop website developer and Facebook Ads specialist, serving Baniachong, Habiganj, Sylhet, Dhaka, Bangladesh and India. See projects and get in touch.">
+  <meta name="keywords" content="Abidur Rahman Joy, Joy, Abidur Rahman, website developer Bangladesh, website developer Sylhet, website developer Habiganj, website developer Baniachong, software developer Bangladesh, Facebook Ads specialist Bangladesh, Facebook Ads Sylhet, e-commerce website developer, shop website design, dokan website, দোকানের ওয়েবসাইট, ই-কমার্স ওয়েবসাইট বানিয়াচং, ওয়েবসাইট ডিজাইন হবিগঞ্জ, সফটওয়্যার ডেভেলপার সিলেট, ফেসবুক এড হবিগঞ্জ, Dhaka, Sylhet, Habiganj, Baniachong, Bangladesh, India, Agriculturist, Digital Marketing, Graphic Design">
   <meta name="author" content="Abidur Rahman Joy">
 
   <!-- Open Graph (Facebook/LinkedIn link previews) -->
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="Abidur Rahman Joy | Facebook Ads Specialist, Software & Website Builder, Agriculturist">
-  <meta property="og:description" content="Facebook Ads specialist, software & website builder, and agriculturist from Bangladesh. See projects, services, and get in touch.">
+  <meta property="og:title" content="Abidur Rahman Joy (Joy) | Web, Software & Facebook Ads — Baniachong, Habiganj, Sylhet, Bangladesh">
+  <meta property="og:description" content="Website, software, e-commerce & shop website developer and Facebook Ads specialist, serving Baniachong, Habiganj, Sylhet, Dhaka, Bangladesh and India.">
   <meta property="og:url" content="https://abidurrahamanjoy.github.io/joy-portfolio/">
   <meta property="og:image" content="https://abidurrahamanjoy.github.io/joy-portfolio/assets/profile-placeholder.svg">
   <meta property="og:locale" content="en_US">
 
   <!-- Twitter/X card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Abidur Rahman Joy | Facebook Ads Specialist, Software & Website Builder, Agriculturist">
-  <meta name="twitter:description" content="Facebook Ads specialist, software & website builder, and agriculturist from Bangladesh.">
+  <meta name="twitter:title" content="Abidur Rahman Joy (Joy) | Web, Software & Facebook Ads — Baniachong, Habiganj, Sylhet, Bangladesh">
+  <meta name="twitter:description" content="Website, software, e-commerce & shop website developer and Facebook Ads specialist in Bangladesh.">
   <meta name="twitter:image" content="https://abidurrahamanjoy.github.io/joy-portfolio/assets/profile-placeholder.svg">
 
   <link rel="icon" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@700&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="style.css?v=15">
 
-  <!-- Structured data: helps Google understand who you are and what you do -->
+  <!-- Structured data: helps Google understand who you are, what you do, and where you serve clients -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Abidur Rahman Joy",
+    "alternateName": ["Joy", "Abidur Rahman", "Abidur Rahman Joy (Joy)"],
     "url": "https://abidurrahamanjoy.github.io/joy-portfolio/",
     "image": "https://abidurrahamanjoy.github.io/joy-portfolio/assets/profile-placeholder.svg",
-    "jobTitle": ["Facebook Ads Specialist", "Software Builder", "Website Builder", "Agriculturist", "Batch Designer"],
-    "description": "Facebook Ads specialist, software & website builder, and agriculturist from Bangladesh.",
+    "jobTitle": ["Facebook Ads Specialist", "Website Developer", "E-commerce Website Developer", "Software Builder", "Agriculturist", "Batch Designer"],
+    "description": "Website, software, e-commerce & shop website developer and Facebook Ads specialist from Baniachong, Habiganj, Sylhet, Bangladesh.",
     "nationality": "Bangladeshi",
-    "knowsAbout": ["Facebook Ads", "Digital Marketing", "Web Development", "Software Development", "Agriculture", "Graphic Design"],
+    "homeLocation": { "@type": "Place", "name": "Baniachong, Habiganj, Sylhet, Bangladesh" },
+    "areaServed": ["Baniachong", "Habiganj", "Sylhet", "Dhaka", "Bangladesh", "India"],
+    "knowsAbout": ["Facebook Ads", "Digital Marketing", "Web Development", "E-commerce Website Design", "Shop / Business Website Design", "Software Development", "Agriculture", "Graphic Design"],
     "sameAs": [
       "https://www.facebook.com/REPLACE_WITH_YOUR_USERNAME",
       "https://www.linkedin.com/in/REPLACE_WITH_YOUR_USERNAME",
@@ -67,6 +70,7 @@
   <button id="menuBtn" class="icon-btn" aria-label="Menu">☰</button>
   <nav id="navLinks">
     <span id="navItems"></span>
+    <button id="themeBtn" class="theme-btn" aria-label="Toggle dark mode" type="button">🌙</button>
     <button id="adminBtn" class="admin-btn">🔐 Admin</button>
   </nav>
 </header>
@@ -77,22 +81,45 @@
     <div class="blob b2" aria-hidden="true"></div>
     <div class="blob b3" aria-hidden="true"></div>
     <div class="hero-grid">
-      <div class="hero-photo"><img id="profileImage" src="assets/profile-placeholder.svg" alt="Profile"></div>
+      <div class="hero-photo-wrap">
+        <div class="hero-arc" aria-hidden="true"></div>
+        <div class="hero-photo"><img id="profileImage" src="assets/profile-placeholder.svg" alt="Profile"></div>
+        <div class="float-chip fc1" aria-hidden="true">✦</div>
+        <div class="float-chip fc2" aria-hidden="true">💬</div>
+      </div>
       <div class="hero-text">
         <p class="eyebrow" id="heroEyebrow"></p>
         <span class="greet"><svg class="brush" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true"><path d="M8 55 C40 20,120 15,150 35 C190 60,230 15,290 45 C260 75,150 85,90 70 C50 60,20 68,8 55 Z" fill="currentColor"/></svg><span class="script">Hello!</span></span>
-        <h1 id="heroName">Loading...</h1>
-        <p id="heroTagline"></p>
-        <div class="actions"><a class="btn primary" id="btn1" href="#projects"></a><a class="btn" id="btn2" href="#contact"></a></div>
+        <h1 id="heroName" class="skel skel-text">Loading...</h1>
+        <p id="heroTagline" class="skel skel-text"></p>
+        <div class="actions"><a class="btn primary" id="btn1" href="#projects"></a><a class="btn" id="btn2" href="#contact"></a><a class="btn" id="btn3" href="#" target="_blank" rel="noopener" hidden>📄 Download CV</a></div>
       </div>
     </div>
   </section>
 
-  <!-- All other sections are generated from the database -->
-  <div id="sections"></div>
+  <!-- All other sections are generated from the database; these skeleton blocks are replaced once data loads -->
+  <div id="sections">
+    <div class="section skeleton-section" aria-hidden="true"><div class="skel skel-bar" style="width:8rem"></div><div class="skel skel-bar" style="width:16rem;height:2rem;margin:.6rem 0 1.5rem"></div><div class="skel skel-bar" style="width:100%;height:6rem"></div></div>
+  </div>
 </main>
 
+<button id="backTop" class="back-top" aria-label="Back to top" type="button">↑</button>
+
 <footer><span id="footerName">Abidur Rahman Joy</span> · <span id="footerText"></span> · <span id="year"></span></footer>
+
+<div id="infoModal" class="info-modal hidden" role="dialog" aria-modal="true" aria-label="Details">
+  <div class="info-modal-card">
+    <button class="info-close" aria-label="Close">×</button>
+    <div id="infoModalBody"></div>
+  </div>
+</div>
+
+<div id="welcomeModal" class="info-modal hidden" role="dialog" aria-modal="true" aria-label="Welcome">
+  <div class="info-modal-card welcome-card">
+    <button class="info-close" aria-label="Close">×</button>
+    <div id="welcomeModalBody"></div>
+  </div>
+</div>
 
 <div id="adminModal" class="modal hidden">
   <div class="modal-card">
@@ -123,6 +150,6 @@
   </div>
 </div>
 
-<script type="module" src="app.js?v=11"></script>
+<script type="module" src="app.js?v=15"></script>
 </body>
 </html>
